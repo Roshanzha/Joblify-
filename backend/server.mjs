@@ -8,23 +8,23 @@ import { dirname } from 'path'
 import { fileURLToPath } from "url";
 import path from "path";
 //db and authUser
-import connectDB from "./job/db/connect.mjs";
+import connectDB from "../job/db/connect.mjs";
 
 //router
-import authRouter from "./job/routes/authRoutes.mjs";
-import jobsRouter from "./job/routes/jobsRoutes.mjs";
+import authRouter from "../job/routes/authRoutes.mjs";
+import jobsRouter from "../job/routes/jobsRoutes.mjs";
 
 //middleware
-import notFoundMiddleWare from "./job/middleware/not-found.mjs";
-import errorHandlerMiddleware from "./job/middleware/error-handler.mjs";
-import authenticateUser from './job/middleware/auth.mjs '
+import notFoundMiddleWare from "../job/middleware/not-found.mjs";
+import errorHandlerMiddleware from "../job/middleware/error-handler.mjs";
+import authenticateUser from '../job/middleware/auth.mjs '
 dotenv.config();
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 const __dirname=dirname(fileURLToPath(import.meta.url))
-app.use(express.static(path.resolve(__dirname,'./job/build')))
+app.use(express.static(path.resolve(__dirname,'../job/build')))
 
 app.use(express.json());
 
@@ -46,7 +46,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs",authenticateUser, jobsRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname,'./job/build','index.html'))
+  res.sendFile(path.resolve(__dirname,'../job/build','index.html'))
 })
 
 app.use(notFoundMiddleWare);
