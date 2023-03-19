@@ -4,7 +4,7 @@
     "install-client": "cd job && npm install",
     "build-client":"cd job && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd backend && nodemon server.mjs",
+    "server": "nodemon server.mjs",
     "job": "npm start --prefix job",
     "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run job\""
   },
